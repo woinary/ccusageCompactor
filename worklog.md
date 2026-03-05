@@ -1,0 +1,89 @@
+# 作業記録
+
+## 2026-03-05: ccusage-compact.mjs 実装
+
+### 背景
+
+ccusageの `blocks --live` は約110文字幅が必要で、80文字程度の狭い端末ではTokens列が切れる問題があった。
+`blocks --json` でJSONを取得して80文字幅のコンパクトな表を表示するスクリプトを作成することにした。
+
+### 計画フェーズで決定した仕様
+
+- 目標幅: 80文字
+- 言語: Node.js（外部依存なし）
+- データソース: `npx ccusage@latest blocks --json --timezone Asia/Tokyo`
+- カラム構成: Date(14) / Status(10) / Tokens(9) / %(7) / Cost(7) / Models(14) → 61 + 罫線19 = 80
+- gap行: 1行にまとめて表示
+- 実行モード: デフォルト1回実行 / `--live` で自動更新 / `--interval <秒>` で間隔指定
+
+### 実装フェーズで発覚した仕様差異
+
+計画時点では `durationMinutes` フィールドがあると想定していたが、実際のJSONには存在しなかった。
+
+**対処**: `startTime` と `actualEndTime` の差分をミリ秒から分単位に変換して算出。gap行は `startTime` と `endTime` の差分を使用。
+
+#### 実際のJSONフィールド（ブロック1件の例）
+
+```json
+{
+  "id": "2026-03-02T15:00:00.000Z",
+  "startTime": "2026-03-02T15:00:00.000Z",
+  "endTime": "2026-03-02T20:00:00.000Z",
+  "actualEndTime": "2026-03-02T15:34:57.523Z",
+  "isActive": false,
+  "isGap": false,
+  "totalTokens": 438319,
+  "costUSD": 0.18284655,
+  "models": ["claude-sonnet-4-6", "claude-haiku-4-5-20251001"],
+  "burnRate": null,
+  "projection": null
+}
+```
+
+activeブロックの `projection` フィールド:
+
+```json
+{
+  "totalTokens": 1182818,
+  "totalCost": 1.04,
+  "remainingMinutes": 101
+}
+```
+
+計画では `projection.costUSD` を想定していたが、実際は `projection.totalCost`。
+
+#### トップレベルのJSON構造
+
+`blocks --json` の出力はブロック配列を直接返す（`{ blocks: [...] }` ではなく `[...]`）。
+
+### 実装手順
+
+1. `ccusage-compact.mjs` を新規作成（初版）
+2. 実行して動作確認 → Statusカラムが空、`gap 0h` が表示される問題を発見
+3. `blocks --json` の実際のフィールド構造を確認（`durationMinutes` 非存在を確認）
+4. activeブロック周辺のフィールドを確認（`projection.totalCost` の正確な名称を確認）
+5. `diffMinutes()` 関数を追加し、duration計算を修正して再作成
+
+### 動作確認結果
+
+```
+┌────────────────┬────────────┬───────────┬─────────┬─────────┬────────────────┐
+│ Date (JST)     │ Status     │    Tokens │       % │    Cost │ Models         │
+├────────────────┼────────────┼───────────┼─────────┼─────────┼────────────────┤
+│ 03-03 00:00    │ 35m        │      438k │   17.4% │   $0.18 │ son,hku        │
+│                │ gap 2h40m  │         - │       - │       - │                │
+├────────────────┼────────────┼───────────┼─────────┼─────────┼────────────────┤
+│ 03-05 13:00    │ ACTIVE     │      668k │   26.6% │   $0.64 │ syn,son        │
+├────────────────┼────────────┼───────────┼─────────┼─────────┼────────────────┤
+│ (token limit)  │ REMAINING  │      1.8M │   73.4% │         │                │
+│ (burn rate)    │ PROJECTED  │      1.0M │   40.7% │   $0.98 │                │
+└────────────────┴────────────┴───────────┴─────────┴─────────┴────────────────┘
+```
+
+- 表示幅: `str.length` = 80文字（正確）
+  - ※ `wc -L` / `awk length()` はUTF-8罫線文字をバイト数で計測するため240と出る（誤り）
+- ccusageはアクティブブロック内にも短いgap行を生成することがある（正常動作）
+
+### 成果物
+
+- `/Users/woinary/ClaudeWorkspace/ccusageCompactor/ccusage-compact.mjs`
