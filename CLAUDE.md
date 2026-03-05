@@ -175,6 +175,8 @@ activeブロックが存在する場合のみ表示:
 
 - `README.md` を変更した場合は `README.ja.md` も同期する（日英両方を常に最新に保つ）
 - `CHANGELOG.en.md` を変更した場合は `CHANGELOG.ja.md` も同期する（同上）
+- オプション・機能を追加・変更した場合は `README.md` / `README.ja.md` の Usage セクションも更新する
+- 動作確認済みの ccusage バージョンが変わった場合は README の記載を更新する
 
 ### バージョン管理・リリース
 

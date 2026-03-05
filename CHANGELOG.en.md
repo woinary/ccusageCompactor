@@ -9,6 +9,9 @@ Versioning follows [Semantic Versioning](https://semver.org/):
 
 ## [Unreleased]
 
+### Changed
+- README: add short option aliases, `--help` usage, and tested ccusage version (`18.0.8`)
+
 ## v0.3.0 - 2026-03-05
 
 ### Added

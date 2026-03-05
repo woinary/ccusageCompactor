@@ -15,6 +15,8 @@ A script that displays [ccusage](https://github.com/ryoppippi/ccusage) `blocks` 
 
 No external npm dependencies.
 
+Tested with ccusage `18.0.8`.
+
 ## Usage
 
 ### Run once
@@ -26,16 +28,22 @@ node ccusage-compact.mjs
 ### Live update (every 30 seconds)
 
 ```bash
-node ccusage-compact.mjs --live
+node ccusage-compact.mjs --live   # or: -l
 ```
 
 ### Live update (custom interval)
 
 ```bash
-node ccusage-compact.mjs --live --interval 60
+node ccusage-compact.mjs --live --interval 60   # or: -l -i 60
 ```
 
-`--interval` is in seconds. Press Ctrl+C to exit.
+`--interval` (`-i`) is in seconds. Press Ctrl+C to exit.
+
+### Show help
+
+```bash
+node ccusage-compact.mjs --help   # or: -h
+```
 
 ## Example output
 

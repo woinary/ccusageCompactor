@@ -137,3 +137,20 @@ Issue #2 の対応。`--live` / `--interval` / `--help` に対して `-l` / `-i`
 
 - `ccusage-compact.mjs`（短縮オプション追加）
 - `CHANGELOG.en.md` / `CHANGELOG.ja.md`（v0.3.0 エントリ追加）
+
+---
+
+## 2026-03-05: ドキュメント整備・開発ルール更新
+
+### 対応内容
+
+- `README.md` / `README.ja.md`: 短縮オプション（`-l`/`-i`/`-h`）・`--help` の使い方・動作確認済み ccusage バージョン（`18.0.8`）を追記
+- `CLAUDE.md`: バージョン管理ルールを改訂（Issue 対応ごとにバージョンを上げない、リリース時のみ）、README 更新ルールを追加、作業記録ルールを追加
+- `CHANGELOG.en.md` / `CHANGELOG.ja.md`: `[Unreleased]` セクションに README 更新を記載
+- Issue #4 を作成（エラーハンドリングの追加）
+
+### 成果物
+
+- `README.md` / `README.ja.md`（使い方の更新）
+- `CLAUDE.md`（開発ルール整備）
+- `CHANGELOG.en.md` / `CHANGELOG.ja.md`（[Unreleased] 更新）

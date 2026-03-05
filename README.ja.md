@@ -13,6 +13,8 @@
 
 外部npmパッケージへの依存なし。
 
+ccusage `18.0.8` で動作確認済み。
+
 ## 使い方
 
 ### 1回実行
@@ -24,16 +26,22 @@ node ccusage-compact.mjs
 ### ライブ更新（30秒ごと）
 
 ```bash
-node ccusage-compact.mjs --live
+node ccusage-compact.mjs --live   # または: -l
 ```
 
 ### ライブ更新（間隔を指定）
 
 ```bash
-node ccusage-compact.mjs --live --interval 60
+node ccusage-compact.mjs --live --interval 60   # または: -l -i 60
 ```
 
-`--interval` の単位は秒。Ctrl+C で終了。
+`--interval`（`-i`）の単位は秒。Ctrl+C で終了。
+
+### ヘルプを表示
+
+```bash
+node ccusage-compact.mjs --help   # または: -h
+```
 
 ## 表示例
 
