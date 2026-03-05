@@ -87,3 +87,34 @@ activeブロックの `projection` フィールド:
 ### 成果物
 
 - `/Users/woinary/ClaudeWorkspace/ccusageCompactor/ccusage-compact.mjs`
+
+---
+
+## 2026-03-05: ドキュメント整備 / `--help` オプション追加 (v0.2.0)
+
+### 対応内容
+
+#### Issue #1: `--help` オプションの追加
+
+`ccusage-compact.mjs` に `--help` オプションを追加。他の引数チェックより先に評価し、使い方を stdout に出力して終了コード 0 で終了する。
+
+#### 更新履歴ファイルの作成
+
+- `CHANGELOG.en.md` / `CHANGELOG.ja.md` を新規作成（日英2ファイル構成）
+- バージョン管理方式をセマンティックバージョニング（`vMAJOR.MINOR.PATCH`）に決定
+  - 日付ベースでは1日に複数改訂した際にエントリが衝突するため
+- `v0.1.0`: 初期リリース、`v0.2.0`: `--help` 追加
+
+#### CLAUDE.md への開発ルール追記
+
+- 更新履歴ルール: 修正・機能追加時は `CHANGELOG.en.md` と `CHANGELOG.ja.md` を両方更新
+- ドキュメント同期ルール: README / CHANGELOG は日英を常に同期
+- バージョン管理ポリシー: セマンティックバージョニングの方針を明記
+
+### 成果物
+
+- `ccusage-compact.mjs`（`--help` オプション追加）
+- `CHANGELOG.en.md`（新規）
+- `CHANGELOG.ja.md`（新規）
+- `CLAUDE.md`（開発ルール追記）
+- `README.md` / `README.ja.md`（微修正）
