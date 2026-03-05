@@ -96,3 +96,4 @@ node ccusage-compact.mjs --live --interval 60
 ## 補足
 
 本スクリプトは [Claude Code](https://claude.ai/claude-code) を使用して作成しました。
+また、Claude CodeとGitHubを利用した開発の学習を裏の目的としています。

@@ -98,3 +98,4 @@ Shown only when an active block exists:
 ## Notes
 
 This script was created with [Claude Code](https://claude.ai/claude-code).
+Moreover, the underlying objective is to learn development using Claude Code and GitHub.

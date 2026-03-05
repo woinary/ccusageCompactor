@@ -204,6 +204,21 @@ function render(data) {
 
 // コマンドライン引数パース
 const args = process.argv.slice(2);
+
+// --help の処理（他の引数チェックより先に評価）
+if (args.includes('--help')) {
+  console.log(`Usage: node ccusage-compact.mjs [options]
+
+Display ccusage blocks in a compact 80-column table.
+
+Options:
+  --live               Auto-refresh (default: every 30 seconds)
+  --interval <sec>     Refresh interval in seconds (use with --live)
+  --help               Show this help message
+`);
+  process.exit(0);
+}
+
 const liveMode = args.includes('--live');
 const intervalIdx = args.indexOf('--interval');
 const intervalSec = intervalIdx !== -1 ? parseInt(args[intervalIdx + 1], 10) || 30 : 30;
