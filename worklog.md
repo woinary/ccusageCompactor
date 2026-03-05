@@ -118,3 +118,22 @@ activeブロックの `projection` フィールド:
 - `CHANGELOG.ja.md`（新規）
 - `CLAUDE.md`（開発ルール追記）
 - `README.md` / `README.ja.md`（微修正）
+
+---
+
+## 2026-03-05: 短縮オプション追加 (v0.3.0)
+
+### 対応内容
+
+Issue #2 の対応。`--live` / `--interval` / `--help` に対して `-l` / `-i` / `-h` の短縮形を追加。
+
+引数パース部分を以下のように修正:
+- `args.includes('--help')` → `|| args.includes('-h')` を追加
+- `args.includes('--live')` → `|| args.includes('-l')` を追加
+- `--interval` の `indexOf` を `-i` にもフォールバック
+- ヘルプテキストに短縮形を併記（`-l, --live` 形式）
+
+### 成果物
+
+- `ccusage-compact.mjs`（短縮オプション追加）
+- `CHANGELOG.en.md` / `CHANGELOG.ja.md`（v0.3.0 エントリ追加）

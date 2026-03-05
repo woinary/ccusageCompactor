@@ -9,6 +9,11 @@ Versioning follows [Semantic Versioning](https://semver.org/):
 
 ## [Unreleased]
 
+## v0.3.0 - 2026-03-05
+
+### Added
+- Short option aliases: `-l` for `--live`, `-i` for `--interval`, `-h` for `--help` ([#2](https://github.com/woinary/ccusageCompactor/issues/2))
+
 ## v0.2.0 - 2026-03-05
 
 ### Added

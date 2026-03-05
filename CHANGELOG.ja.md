@@ -9,6 +9,11 @@
 
 ## [未リリース]
 
+## v0.3.0 - 2026-03-05
+
+### 追加
+- 短縮オプション: `-l`（`--live`）、`-i`（`--interval`）、`-h`（`--help`）([#2](https://github.com/woinary/ccusageCompactor/issues/2))
+
 ## v0.2.0 - 2026-03-05
 
 ### 追加
