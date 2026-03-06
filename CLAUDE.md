@@ -193,3 +193,12 @@ activeブロックが存在する場合のみ表示:
 3. `git tag vX.Y.Z` でタグを打つ
 4. プッシュ（`git push origin main --tags`）
 
+
+## エージェント情報
+
+- 報告フォルダ名: ccusageCompactor
+- 表示名: ccusageCompactor
+
+## 作業記録
+
+- タスク完了時・コンパクト前・セッション終了前に `record-work` スキルを実行する
